@@ -34,7 +34,9 @@
                                 <a href="{{ url("/print/$spko->id_spko") }}">
                                     <button class="btn btn-xs btn-success">Print</button>
                                 </a>
-                                <button class="btn btn-xs btn-warning">Update</button>
+                                <a href="{{ url("/update/$spko->id_spko") }}">
+                                    <button class="btn btn-xs btn-warning">Update</button>
+                                </a>
                                 <button class="btn btn-xs btn-error">Delete</button>
                             </td>
                         </tr>

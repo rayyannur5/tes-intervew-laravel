@@ -96,6 +96,68 @@ class SpkoController extends Controller
         return redirect("/");
     }
 
+    function updateGet(String $id) 
+    {
+        $spko = Spko::find($id);
+        $spko_items = SpkoItem::where('idm', $spko->id_spko)->get();
+
+        $product_selected = [];
+
+        foreach ($spko_items as $item) 
+        {
+            $product = $item->product;
+            $product->qty = $item->qty;
+            array_push($product_selected, $product);
+        }
+     
+        $employees = Employee::all();
+        $products = Product::all();
+        $process = [
+            'Cor',
+            'Brush',
+            'Bombing',
+            'Slep',
+        ];
+
+        return view('update', [
+            'title' => 'update',
+            'spko' => $spko,
+            'spko_items' => $spko_items,
+            'employees' => $employees,
+            'products' => $products,
+            'process' => $process,
+            'product_selected' => $product_selected,
+        ]);
+    }
+
+    function updatePost(Request $request, String $id)
+    {
+        $spko = Spko::find($id);
+
+        $spko->update([
+            'remarks' => $request->remarks,
+            'employee' => $request->id_employee,
+            'trans_date' => $request->trans_date,
+            'process' => $request->process,
+        ]);
+
+        SpkoItem::where('idm', $spko->id_spko)->delete();
+
+        $products = json_decode($request->products);
+        
+        foreach ($products as $key => $product) {
+
+            SpkoItem::create([
+                'idm' => $spko->id_spko,
+                'ordinal' => $key + 1,
+                'id_product' => $product->id,
+                'qty' => $product->qty
+            ]);
+        }
+
+        return redirect("/");
+    }
+
     function print(String $id) 
     {
         $spko = Spko::find($id);
