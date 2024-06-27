@@ -77,7 +77,7 @@
         <div class="flex mt-2 gap-2 justify-end">
             <button class="btn btn-sm btn-success" type="submit">Save</button>
             <a href="{{ url('/') }}">
-                <button class="btn btn-sm btn-warning">Cancel</button>
+                <button class="btn btn-sm btn-warning" type="button">Cancel</button>
             </a>
         </div>
     </form>
