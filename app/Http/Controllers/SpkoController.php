@@ -173,4 +173,13 @@ class SpkoController extends Controller
             'spko_items' => $spko_items,
         ]);
     }
+
+
+    function delete(String $id) 
+    {
+        $spko = Spko::find($id);
+        $spko->spko_items()->delete();
+        $spko->delete();
+        return redirect("/");
+    }
 }
