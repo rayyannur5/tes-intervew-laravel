@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\SpkoController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SpkoController::class, 'index']);
+Route::get('/create', [SpkoController::class, 'createGet']);
+Route::post('/create', [SpkoController::class, 'createPost']);

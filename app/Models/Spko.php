@@ -9,6 +9,8 @@ class Spko extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = "id_spko";
+
     protected $fillable = [
         'remarks',
         'employee',
@@ -17,9 +19,9 @@ class Spko extends Model
         'sw',
     ];
 
-    function employee()
+    function employee_user()
     {
-        return $this->belongsTo(Employee::class, 'employee');
+        return $this->belongsTo(Employee::class, 'employee', ownerKey:'id_employee');
     }
 
     function spko_items()
