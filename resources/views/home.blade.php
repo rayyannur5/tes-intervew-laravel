@@ -31,7 +31,9 @@
                             <td>{{ $spko->process }}</td>
                             <td>{{ $spko->sw }}</td>
                             <td>
-                                <button class="btn btn-xs btn-success">Print</button>
+                                <a href="{{ url("/print/$spko->id_spko") }}">
+                                    <button class="btn btn-xs btn-success">Print</button>
+                                </a>
                                 <button class="btn btn-xs btn-warning">Update</button>
                                 <button class="btn btn-xs btn-error">Delete</button>
                             </td>

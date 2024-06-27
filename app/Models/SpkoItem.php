@@ -19,6 +19,8 @@ class SpkoItem extends Model
         'qty'
     ];
 
+    protected $with = ['product'];
+
     public function getKeyName()
     {
         return $this->primaryKey;

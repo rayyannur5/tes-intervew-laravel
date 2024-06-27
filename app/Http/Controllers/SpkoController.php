@@ -95,4 +95,20 @@ class SpkoController extends Controller
         
         return redirect("/");
     }
+
+    function print(String $id) 
+    {
+        $spko = Spko::find($id);
+        $spko_items = SpkoItem::where('idm', $spko->id_spko)->get();
+
+        $spko_items = $spko_items->map(function ($item) {
+            $item->sku = $item->product->sub_category . "." . $item->product->serial_no . "." . $item->product->carat;
+            return $item;
+        });
+        return view('print', [
+            'title' => $spko->description,
+            'spko' => $spko,
+            'spko_items' => $spko_items,
+        ]);
+    }
 }
