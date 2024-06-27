@@ -13,6 +13,7 @@
 
     <form action="{{ url("/update/$spko->id_spko") }}" method="post" id="create-form">
         @csrf
+        @method('put')
         <div class="card bg-base-100 overflow-auto p-4 mt-4">
             <label class="form-control w-full">
                 <div class="label">
